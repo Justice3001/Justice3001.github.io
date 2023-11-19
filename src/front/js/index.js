@@ -18,9 +18,9 @@ import SpotifyAuthWrapper from './component/SpotifyAuthWrapper.js';
 ReactDOM.render(
   <SpotifyAuthWrapper>
     {/* Your other components that require Spotify authentication */}
-    {/* Example: <Layout /> */}
+     <Layout /> 
     {/* Example: <Search /> */}
-     <Recommendations /> 
+     {/*<Recommendations /> */}
     {/* Example: <App /> */}
   </SpotifyAuthWrapper>,
   document.querySelector('#app')

@@ -4,6 +4,8 @@ import axios from 'axios';
 import './Recon.css'; // Correct import statement
 import Navbar from '../component/navbar'
 
+
+
 const Recommendations = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedArtist, setSelectedArtist] = useState(null);
@@ -17,7 +19,7 @@ const Recommendations = () => {
   const [audioRef] = useState(() => new Audio());
   const [showTopTracksModal, setShowTopTracksModal] = useState(false);
   const [topTracks, setTopTracks] = useState([]);
-  const [showMusicPlayer, setShowMusicPlayer] = useState(false);
+  
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -26,7 +28,7 @@ const Recommendations = () => {
   useEffect(() => {
     if (!searchTerm) return;
 
-    const accessToken = 'BQBm8SCuFtx7dI1JF_FE1-KdD_xzREwD5WWleU2MhKumi7_l1N8ZzV_Yd2owejmBj15aq5RG8i-lOLCy7amDwzCbBaykcQG2KxFDIgGjFW4pch18IuezXhHFJ7JQ16jFLmRelnuDShyFjJbDs20o7AYdRDKfY7l7MQDA2ZFU47GZSJa6VH_cMaAHOXxS4vACuOc2g30ME4S1TGF33nQAbun63LyR ';
+    const accessToken = 'BQCtimy6hzovW8ugQVGfdd9E6hWBM-mmYg7-bDUNv9rEUGuPC-H4Rd1IZJJ_pyawEavkopc_njWK1ocCfXKH-FD6WL_ddWS4KF-uiv3c2UFvrSzeiJXVbzQxnCurCe7ppPVkaClPviaN3cKFYF4F1a1MhF_X9Sihtg1Ov4IlcFMyjDdAMi1PmUMdWin6PmUyIBqgdVVKSdXIRf7YzygOzHg9LuKv';
 
     axios({
       method: 'get',
@@ -98,7 +100,7 @@ const Recommendations = () => {
   };
 
   const fetchTopTracks = (artistId) => {
-    const accessToken = 'BQBm8SCuFtx7dI1JF_FE1-KdD_xzREwD5WWleU2MhKumi7_l1N8ZzV_Yd2owejmBj15aq5RG8i-lOLCy7amDwzCbBaykcQG2KxFDIgGjFW4pch18IuezXhHFJ7JQ16jFLmRelnuDShyFjJbDs20o7AYdRDKfY7l7MQDA2ZFU47GZSJa6VH_cMaAHOXxS4vACuOc2g30ME4S1TGF33nQAbun63LyR';
+    const accessToken = 'BQCtimy6hzovW8ugQVGfdd9E6hWBM-mmYg7-bDUNv9rEUGuPC-H4Rd1IZJJ_pyawEavkopc_njWK1ocCfXKH-FD6WL_ddWS4KF-uiv3c2UFvrSzeiJXVbzQxnCurCe7ppPVkaClPviaN3cKFYF4F1a1MhF_X9Sihtg1Ov4IlcFMyjDdAMi1PmUMdWin6PmUyIBqgdVVKSdXIRf7YzygOzHg9LuKv';
 
     axios({
       method: 'get',
@@ -125,7 +127,11 @@ const Recommendations = () => {
   return (
     <div className="container mt-5 justify-content-center" style={{ maxWidth: '50%', height: 'auto', }}>
       <Navbar/>
-      <h1 style={{ marginTop: '200px' }}>Sound Suggester</h1>
+      {/* Bootstrap Jumbotron for larger header banner */}
+      <div className="jumbotron text-center" style={{ marginTop: '100px', backgroundColor: '#343a40', color: '#fff' }}>
+        <h1 className="display-4">Recommendations</h1>
+        {/* Add additional content or description if needed */}
+      </div>
       <input
         type="text"
         className="form-control mb-3 swipe-in" // Add the animation class here
@@ -135,34 +141,34 @@ const Recommendations = () => {
         onChange={handleSearch}
       />
       {selectedArtist && (
-        <div className="card mb-5 justify-content-center" style={{maxWidth:"40rem", marginLeft:"50px"}}>
-          <img
-            src={selectedArtist.images[0].url}
-            className="card-img-top"
-            alt={selectedArtist.name}
-            
-          />
-          <div className="card-body">
-            <h5 className="card-title">{selectedArtist.name}</h5>
-            <p className="card-text">Popularity: {selectedArtist.popularity}</p>
-          </div>
+        <div className="card mb-5 mx-auto" style={{ maxWidth: "40rem", marginLeft: "50px" }}>
+        <img
+          src={selectedArtist.images[0].url}
+          className="card-img-top"
+          alt={selectedArtist.name}
+        />
+        <div className="card-body text-center">
+          <h5 className="card-title">{selectedArtist.name}</h5>
+          <p className="card-text">Popularity: {selectedArtist.popularity}</p>
         </div>
+      </div>
+      
       )}
 
 <div className="row justify-content-center">
   <h2>Related Tracks</h2> 
   {recommendations.tracks && recommendations.tracks.map((track) => (
     <div key={track.id} className="col-md-4 mb-5">
-    <div className="card">
+    <div className="card text-center">
       <img
         src={track.album.images[0].url}  
         className="card-img-top"
         alt={track.name}
         style={{ maxWidth: '100%', height: 'auto' }}
       />
-      <div className="card-body">
-        <h5 className="card-title">{track.name}</h5>
-        <p className="card-text">Artists: {track.artists.map((artist) => artist.name).join(', ')}</p>
+      <div className="card-body text-center">
+        <h5 className="card-title text-center">{track.name}</h5>
+        <p className="card-text text-center">Artists: {track.artists.map((artist) => artist.name).join(', ')}</p>
         {/* Add your play button here */}
         <button className="btn btn-primary" onClick={() => playTrack(track.preview_url)}>Play</button>
       </div>

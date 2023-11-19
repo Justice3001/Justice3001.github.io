@@ -1,4 +1,5 @@
 {
+	"homepage": "https//Justice3001.github.io/Justice3001.github.io",
 	"name": "react-hello-webapp",
 	"engines": {
 		"node": "16.x"
@@ -7,6 +8,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
 		"build": "webpack --config webpack.prod.js"
 	},

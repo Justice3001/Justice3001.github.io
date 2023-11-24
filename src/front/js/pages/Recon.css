@@ -8,9 +8,6 @@
 	font-family: 'Bebas Neue', sans-serif;
 	justify-content: center;
 	
-
-
-
 }
 .card {
     overflow: hidden;
@@ -21,10 +18,7 @@
     position: relative;
   }
   
-  .image-container:hover .card-img-top {
-    filter: grayscale(100%);
-    transform: scale(1.1); /* Adjust the scale for a larger zoom effect */
-  }
+  
   
 
   /* Lazy Load Styles */
